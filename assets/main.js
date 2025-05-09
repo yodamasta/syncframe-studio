@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3001/api/generate";
+≈
+const API_URL = "https://syncframe-backend.onrender.com/api/generate";
 
 // Variables globales UNIQUEMENT ici
 const form = document.getElementById('promptForm');
