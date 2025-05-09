@@ -1,4 +1,4 @@
-≈
+
 const API_URL = "https://syncframe-backend.onrender.com/api/generate";
 
 // Variables globales UNIQUEMENT ici
@@ -18,13 +18,11 @@ function copyToClipboard(textId) {
 }
 
 function createCard(scene, idx) {
-  // scene: { title, description, promptImage, promptPlus, promptMinus }
   const card = document.createElement('div');
   card.className = 'sync-card';
   const plusId = `prompt-plus-${idx}`;
   const minusId = `prompt-minus-${idx}`;
   const imgPromptId = `prompt-image-ai-${idx}`;
-  // Patch : génères un prompt image IA si absent ou vide
   if (!scene.promptImage || !scene.promptImage.trim()) {
     scene.promptImage = generateImagePrompt(scene);
   }
@@ -44,7 +42,7 @@ function createCard(scene, idx) {
       <div class="sync-prompt-block">
         <div class="sync-prompt-label plus">🟢 Prompt Kling +</div>
         <div class="sync-prompt-row">
-          <span class="sync-prompt-plus" id="${plusId}">${scene.promptPlus ? scene.promptPlus : '<span class=\'sync-prompt-empty\'>Aucun prompt positif généré</span>'}</span>
+          <span class="sync-prompt-plus" id="${plusId}">${scene.promptPlus || '<span class="sync-prompt-empty">Aucun prompt positif généré</span>'}</span>
           <button class="sync-prompt-btn sync-prompt-btn-stack" onclick="copyToClipboard('${plusId}')">Copier</button>
         </div>
       </div>
@@ -64,15 +62,12 @@ function createCard(scene, idx) {
 }
 
 function generateImagePrompt(scene) {
-  // Patch rapide : transforme le titre/description FR en prompt anglais fluide
-  // (Pour une vraie prod, utiliser GPT ou Gemini en EN)
   let base = scene.title ? scene.title : 'a beautiful scene';
   let desc = scene.description ? scene.description : '';
   return `Cinematic close-up of ${base}. ${desc}`.replace(/\n/g, ' ');
 }
 
 function copySequenceAll(btn) {
-  // On remonte au bloc .sync-card
   const card = btn.closest('.sync-card');
   if (!card) return;
   const title = card.querySelector('.sync-card-title').innerText.trim();
@@ -97,26 +92,24 @@ function renderResults(scenes) {
   });
 }
 
-// Fonction copier pour Prompt Image IA
 function copyPrompt(id) {
   const text = document.getElementById(id).innerText;
   navigator.clipboard.writeText(text);
 }
 
-// --- Loader Orbit gestion ---
 function showLoaderOrbit(show) {
   const loader = document.getElementById('loader-orbit');
   if (loader) loader.classList.toggle('active', !!show);
 }
-// Démo : afficher le loader pendant la génération
+
 const genBtn = document.querySelector('.sync-main button, .sync-main .sync-btn');
 if (genBtn) {
   genBtn.addEventListener('click', () => {
     showLoaderOrbit(true);
-    setTimeout(() => showLoaderOrbit(false), 1800); // simule chargement
+    setTimeout(() => showLoaderOrbit(false), 1800);
   });
 }
-// --- Scroll to top gestion ---
+
 const scrollBtn = document.getElementById('scrollTopBtn');
 if (scrollBtn) {
   window.addEventListener('scroll', () => {
@@ -125,7 +118,6 @@ if (scrollBtn) {
   scrollBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// --- FORM HANDLING ---
 form.onsubmit = async (e) => {
   e.preventDefault();
   errorMsg.textContent = '';
@@ -138,7 +130,6 @@ form.onsubmit = async (e) => {
   form.querySelector('button').disabled = true;
   form.querySelector('button').textContent = 'Génération...';
   try {
-    // --- API CALL (adapt as needed) ---
     const fullPrompt = PROMPT_TEMPLATE.replace('[CONTEXT]', brief);
     const res = await fetch(API_URL, {
       method: 'POST',
@@ -155,7 +146,6 @@ form.onsubmit = async (e) => {
       throw parseErr;
     }
     console.log('Réponse API:', data);
-    // data.scenes = [{ title, description, promptPlus, promptMinus }]
     renderResults(data.scenes || []);
   } catch (err) {
     errorMsg.textContent = 'Erreur lors de la génération : ' + (err.message || err);
@@ -170,7 +160,6 @@ briefInput.addEventListener('keydown', (e) => {
     e.preventDefault();
     form.requestSubmit();
   }
-});
+};
 
-// --- INIT: CLEAR RESULT ON LOAD ---
 document.getElementById('result').innerHTML = '';
