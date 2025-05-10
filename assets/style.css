@@ -13,7 +13,7 @@
   --kling-gradient: linear-gradient(90deg, #a64dff 0%, #00ffff 100%);
 }
 body {
-  background: url('/assets/D10E1E41-5591-4914-978A-13EFBA619565.png') no-repeat center center fixed;
+  background: url('/assets/noise.png') no-repeat center center fixed;
   background-size: cover;
   background-color: #0a0a0a;
   min-height: 100vh;
@@ -364,6 +364,25 @@ html {
   z-index: 101;
   position: relative;
 }
+/* Scroll-to-top button (desktop & mobile) */
+.sync-scroll-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #0005;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .sync-scrolltop {
   position: fixed;
   right: 28px;
@@ -438,6 +457,23 @@ html {
     min-width: 0;
     height: 42px;
   }
+  .sync-prompt-image-block {
+    padding: 12px 7vw 10px 7vw;
+  }
+  .sync-prompt-image-block .sync-prompt-btn {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 8px 0 0 0;
+  }
+  /* Scroll-to-top adaptation mobile */
+  .sync-scroll-top {
+    width: 44px;
+    height: 44px;
+    font-size: 1.7rem;
+    bottom: 16px;
+    right: 16px;
+  }
 }
 .block {
   border-radius: 16px;
@@ -489,15 +525,4 @@ button:hover {
   float: right;
   margin-top: -6px;
   margin-bottom: 2px;
-}
-@media (max-width: 700px) {
-  .sync-prompt-image-block {
-    padding: 12px 7vw 10px 7vw;
-  }
-  .sync-prompt-image-block .sync-prompt-btn {
-    float: none;
-    display: block;
-    width: 100%;
-    margin: 8px 0 0 0;
-  }
 }

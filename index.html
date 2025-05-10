@@ -30,6 +30,8 @@
     <div class="center"></div>
     <div class="orbit"></div>
   </div>
+  <!-- Bouton scroll-top -->
+  <button id="scrollTopBtn" class="sync-scroll-top" style="display:none;">⬆️</button>
   <!-- ===================== SECTIONS BAS DE PAGE ===================== -->
   <div class="sync-sections">
     <section class="sync-section sync-section-about">
@@ -44,40 +46,10 @@
       ✨ Le système produit une scène complète avec deux prompts compatibles Kling :<br>
       &nbsp;&nbsp;• Prompt positif (Kling +)<br>
       &nbsp;&nbsp;• Prompt négatif (Kling -)<br>
-      📋 Cliquez sur Copier pour envoyer vos prompts dans vos outils d’animation préférés.</p>
-    </section>
-    <section class="sync-section sync-section-credits">
-      <h2><span class="icon">💡</span>Crédits</h2>
-      <p style="text-align:center;font-size:1.13em;">
-        <span class="icon">🌀</span> Ce site est un prototype développé avec l’IA par Windsurf pour le studio NeoEcliptica – Agency AI.<br>
-        <span class="icon">✏️</span> Conception narrative, visuelle et technique par <b>Saula (Yodamasta)</b><br>
-        <span class="icon">🔗</span> Contact : <a href="mailto:saulambelo@gmail.com">saulambelo@gmail.com</a> &nbsp;|&nbsp; Instagram : <a href="https://instagram.com/yodamasta" target="_blank">@yodamasta</a><br>
-        <span class="icon">🧩</span> Moteurs utilisés : Gemini, Kling, Magnific, ElevenLabs (optionnel)
-      </p>
+      🎬 Copiez facilement chaque prompt pour vos outils d’animation IA.</p>
     </section>
   </div>
-  <!-- Scroll to top -->
-  <button class="sync-scrolltop" id="scrollTopBtn" title="Remonter">↑</button>
-  <footer class="sync-footer">
-    <div>📅 &copy; 2025 NeoEcliptica – Tous droits réservés.</div>
-    <div>&#x1F4BB; Fait avec <span style="color:#4d7fff;">&#x1F49E;</span> par Windsurf, sur une idée de Saula.</div>
-    <div style="margin-top:6px;">
-      <a href="https://github.com/NeoEcliptica" target="_blank" style="color:#a64dff;text-decoration:underline;">GitHub</a> |
-      <a href="mailto:contact@windsurf.ai" style="color:#00ffff;text-decoration:underline;">Contact technique</a>
-    </div>
-  </footer>
-  <script src="assets/main.js"></script>
-  <script>
-  // Scroll to top
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  window.addEventListener('scroll', () => {
-    scrollBtn.style.display = window.scrollY > 200 ? 'flex' : 'none';
-  });
-  scrollBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
-  // Loader orbit (to be triggered in JS)
-  function showLoaderOrbit(show) {
-    document.getElementById('loader-orbit').classList.toggle('active', !!show);
-  }
-  </script>
+  <!-- Inclusion du JS avec bust de cache -->
+  <script src="assets/main.js?v=2"></script>
 </body>
 </html>
