@@ -104,11 +104,10 @@ function formatResult(resultText) {
 
   // Supprimer les backslashes parasites devant les backticks `
   const sections = resultText.split(/\n(?=Image|Plan|#)/g);
-  return sections.map((section, idx) => \`
-    <div class="sync-prompt-image-block">
-      <div class="sync-prompt-image-label">Plan \${idx + 1}</div>
-      <pre class="sync-prompt-image" id="section\${idx}">\${section.trim()}</pre>
-      <button class="sync-prompt-btn" id="btn-section\${idx}" onclick="copyToClipboard('section\${idx}')">Copier</button>
-    </div>
-  \`).join('');
-}
+  return sections.map((section, idx) => `
+  <div class="sync-prompt-image-block">
+    <div class="sync-prompt-image-label">Plan ${idx + 1}</div>
+    <pre class="sync-prompt-image" id="section${idx}">${section.trim()}</pre>
+    <button class="sync-prompt-btn" id="btn-section${idx}" onclick="copyToClipboard('section${idx}')">Copier</button>
+  </div>
+`).join('');
