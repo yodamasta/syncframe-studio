@@ -79,9 +79,9 @@ if (form) {
         throw new Error("Erreur serveur : " + response.status);
       }
       const data = await response.json();
-      if (!data || !data.result) {
-        throw new Error("Réponse inattendue du serveur.");
-      }
+      if (!data || !data.text) {
+  throw new Error("Réponse inattendue du serveur.");
+}
 
       // Affichage du résultat
       resultDiv.innerHTML = formatResult(data.result);
