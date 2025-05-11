@@ -1,4 +1,6 @@
-/* --- Kling-inspired Modern UI --- */
+@import url('fonts.css');
+
+/* --- Variables CSS --- */
 :root {
   --kling-primary: #a64dff;
   --kling-accent: #00ffff;
@@ -11,17 +13,18 @@
   --kling-gradient: linear-gradient(90deg, #a64dff 0%, #00ffff 100%);
 }
 
+/* --- Base Styles --- */
 body {
-  background-color: var(--kling-bg); /* Remplacement du background-size/cover manquant */
+  background-color: var(--kling-bg);
   min-height: 100vh;
   color: var(--kling-text);
   font-family: 'Inter', 'Montserrat', Arial, sans-serif;
   font-size: 1.09em;
   box-sizing: border-box;
   transition: background 0.4s;
+  position: relative;
 }
 
-/* Correction du bruit numérique : remplacement de l'image par un effet CSS */
 body::after {
   content: "";
   position: fixed;
@@ -47,14 +50,38 @@ body::after {
   z-index: 100;
 }
 
-/* === Début du nouveau code === */
+.sync-bg {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(166,77,255,0.15) 0%,
+    rgba(0,0,0,0) 60%
+  );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* --- Header Styles --- */
+.sync-header {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 36px 0 18px 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .sync-logo {
   height: 56px;
   width: 56px;
   border-radius: 12px;
-  background: 
-    rgba(25,23,44,0.9) 
-    url('assets/logo.svg') no-repeat center;
+  background: rgba(25,23,44,0.9) url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect x="16" y="16" width="96" height="96" rx="12" stroke="%23a64dff" stroke-width="4"/><rect x="40" y="40" width="48" height="48" rx="8" stroke="%23a64dff" stroke-width="3"/><circle cx="64" cy="64" r="14" stroke="%23a64dff" stroke-width="3"/></svg>') no-repeat center;
   background-size: 60%;
   box-shadow: 0 4px 24px #a64dff22;
   transition: all 0.3s ease;
@@ -76,104 +103,6 @@ body::after {
   }
 }
 
-/* Correction du background manquant dans .sync-bg */
-.sync-bg {
-  position: fixed;
-  z-index: 0;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(166,77,255,0.15) 0%,
-    rgba(0,0,0,0) 60%
-  );
-  opacity: 0.85;
-  pointer-events: none;
-}
-
-@import url('fonts.css');
-
-/* --- Kling-inspired Modern UI --- */
-:root {
-  --kling-primary: #a64dff;
-  --kling-accent: #00ffff;
-  --kling-bg: #0f0f0f;
-  --kling-card: rgba(18,17,27,0.99);
-  --kling-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  --kling-border: #22223b;
-  --kling-text: #e0e0e0;
-  --kling-muted: #b2b2b2;
-  --kling-gradient: linear-gradient(90deg, #a64dff 0%, #00ffff 100%);
-}
-body {
-  
-  background-size: cover;
-  background-color: #0a0a0a;
-  min-height: 100vh;
-  color: var(--kling-text);
-  font-family: 'Inter', 'Montserrat', Arial, sans-serif;
-  font-size: 1.09em;
-  box-sizing: border-box;
-  transition: background 0.4s;
-  /* Ajout bruit numérique subtil si possible */
-}
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.3);
-  z-index: -1;
-}
-body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  pointer-events: none;
-  
-  opacity: 0.04;
-  z-index: 100;
-}
-html {
-  background: #0f0f1a;
-}
-#root, .app, .sync-main {
-  background: none !important;
-}
-.sync-card {
-  position: relative;
-  z-index: 1;
-}
-.sync-bg {
-  position: fixed;
-  z-index: 0;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  
-  opacity: 0.85;
-  pointer-events: none;
-}
-.sync-header {
-  z-index: 2;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 36px 0 18px 0;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.sync-logo {
-  height: 56px;
-  width: 56px;
-  border-radius: 12px;
-  background: rgba(25,23,44,0.9);
-  box-shadow: 0 4px 24px #a64dff22;
-}
 .sync-title {
   font-family: 'Montserrat', 'Roboto Mono', monospace;
   font-weight: 800;
@@ -181,6 +110,9 @@ html {
   color: var(--kling-text);
   letter-spacing: 0.01em;
   margin: 0;
+}
+
+/* ... (conservez le reste de votre CSS existant ci-dessous) ... */
 }
 .sync-accent {
   color: var(--kling-accent);
