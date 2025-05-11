@@ -1,4 +1,3 @@
-
 // ==================== VARIABLES GLOBALES ====================
 const API_URL = "https://syncframe-backend.onrender.com/api/generate";
 
@@ -23,7 +22,6 @@ Structure la réponse en sections bien séparées pour chaque image ou plan.`;
 
 // ==================== FONCTIONS ====================
 
-// Copier dans le presse-papier
 function copyToClipboard(textId) {
   const text = document.getElementById(textId).innerText;
   navigator.clipboard.writeText(text).then(() => {
@@ -33,12 +31,10 @@ function copyToClipboard(textId) {
   });
 }
 
-// Afficher/Cacher le loader
 function showLoaderOrbit(show) {
   document.getElementById('loader-orbit').classList.toggle('active', !!show);
 }
 
-// Scroll-to-top
 const scrollBtn = document.getElementById('scrollTopBtn');
 window.addEventListener('scroll', () => {
   if (scrollBtn) {
@@ -49,7 +45,6 @@ if (scrollBtn) {
   scrollBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// Gestion du formulaire
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
