@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyncFrame Studio</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="sync-bg"></div>
+  <header class="sync-header">
+    <a href="/" class="sync-logo-link" onclick="event.preventDefault(); window.location.href='/'">
+      <img src="assets/logo.svg" alt="logo" class="sync-logo"/>
+      <span class="sync-title">SyncFrame <span class="sync-title-accent">Studio</span></span>
+    </a>
+  </header>
+  <main class="sync-main">
+    <section class="sync-form-section">
+      <form id="promptForm" class="sync-form" autocomplete="off">
+        <label class="sync-label" for="brief">Brief créatif</label>
+        <textarea id="brief" class="sync-textarea" placeholder="Décrivez la scène, le contexte, l’ambiance…"></textarea>
+        <button id="generateBtn" class="sync-btn" type="submit">✨ Générer</button>
+      </form>
+      <div id="errorMsg" class="sync-error"></div>
+    </section>
+    <section id="result" class="sync-result"></section>
+  </main>
+  <!-- Loader animé orbit -->
+  <div id="loader-orbit" class="loader-orbit">
+    <div class="center"></div>
+    <div class="orbit"></div>
+  </div>
+  <!-- Bouton scroll-top -->
+  <button id="scrollTopBtn" class="sync-scroll-top" style="display:none;">⬆️</button>
+  <!-- ===================== SECTIONS BAS DE PAGE ===================== -->
+  <div class="sync-sections">
+    <section class="sync-section sync-section-about">
+      <h2><span class="icon">ℹ️</span>À propos du site</h2>
+      <p>Ce générateur a été conçu pour produire des séquences cinématographiques IA cohérentes et prêtes à animer.<br>
+      Chaque scène est pensée pour être utilisée dans des workflows comme Kling, Midjourney, Magnific, ou tout autre outil d’animation générative.<br>
+      Le système repose sur une description narrative forte, accompagnée de prompts positifs et négatifs pour guider l’IA avec précision.</p>
+    </section>
+    <section class="sync-section sync-section-howto">
+      <h2><span class="icon">🛠️</span>Utilisation du site</h2>
+      <p>🧠 Tapez ou générez une description de scène (ex : «&nbsp;une femme marche dans une ville la nuit&nbsp;»).<br>
+      ✨ Le système produit une scène complète avec deux prompts compatibles Kling :<br>
+      &nbsp;&nbsp;• Prompt positif (Kling +)<br>
+      &nbsp;&nbsp;• Prompt négatif (Kling -)<br>
+      🎬 Copiez facilement chaque prompt pour vos outils d’animation IA.</p>
+    </section>
+  </div>
+  <!-- Inclusion du JS avec bust de cache -->
+  <script src="assets/main.js?v=2"></script>
+</body>
+</html>
