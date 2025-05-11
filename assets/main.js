@@ -84,7 +84,7 @@ if (form) {
 }
 
       // Affichage du résultat
-      resultDiv.innerHTML = formatResult(data.result);
+      resultDiv.innerHTML = formatResult(data.text);
 
     } catch (err) {
       errorMsg.innerText = "Erreur : " + err.message;
