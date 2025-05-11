@@ -13,7 +13,7 @@
   --kling-gradient: linear-gradient(90deg, #a64dff 0%, #00ffff 100%);
 }
 body {
-  background: url('/assets/noise.png') no-repeat center center fixed;
+  
   background-size: cover;
   background-color: #0a0a0a;
   min-height: 100vh;
@@ -39,7 +39,7 @@ body::after {
   top: 0; left: 0;
   width: 100vw; height: 100vh;
   pointer-events: none;
-  background: url('/assets/noise.png'); /* image de bruit léger, ou un grain en base64 */
+  
   opacity: 0.04;
   z-index: 100;
 }
@@ -59,7 +59,7 @@ html {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background: url('bg.jpg') center center / cover no-repeat, var(--kling-bg);
+  
   opacity: 0.85;
   pointer-events: none;
 }
