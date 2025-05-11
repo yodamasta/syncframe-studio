@@ -47,21 +47,33 @@ body::after {
   z-index: 100;
 }
 
-/* Correction du logo manquant */
+/* === Début du nouveau code === */
 .sync-logo {
   height: 56px;
   width: 56px;
   border-radius: 12px;
-  background: rgba(25,23,44,0.9);
+  background: 
+    rgba(25,23,44,0.9) 
+    url('assets/logo.svg') no-repeat center;
+  background-size: 60%;
   box-shadow: 0 4px 24px #a64dff22;
-  /* Ajout d'un remplacement textuel */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Orbitron', sans-serif;
-  color: var(--kling-accent);
-  font-size: 1.8em;
-  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 2px solid var(--kling-primary);
+}
+
+.sync-logo:hover {
+  filter: 
+    drop-shadow(0 0 4px var(--kling-accent))
+    brightness(1.2);
+  transform: rotate(15deg) scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .sync-logo {
+    width: 48px;
+    height: 48px;
+    background-size: 55%;
+  }
 }
 
 /* Correction du background manquant dans .sync-bg */
