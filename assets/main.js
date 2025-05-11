@@ -1,3 +1,4 @@
+
 // ==================== VARIABLES GLOBALES ====================
 const API_URL = "https://syncframe-backend.onrender.com/api/generate";
 
@@ -65,7 +66,6 @@ if (form) {
       return;
     }
 
-    // Construction du prompt
     const prompt = PROMPT_TEMPLATE.replace('[CONTEXT]', userContext);
 
     try {
@@ -78,13 +78,15 @@ if (form) {
       if (!response.ok) {
         throw new Error("Erreur serveur : " + response.status);
       }
-      const data = await response.json();
-      if (!data || !data.text) {
-  throw new Error("Réponse inattendue du serveur.");
-}
 
-      // Affichage du résultat
-      resultDiv.innerHTML = formatResult(data.text);
+      const data = await response.json();
+      console.log("🧠 Données reçues du backend :", data);
+      const resultText = data.text || data.result || "";
+      if (!resultText) {
+        throw new Error("Réponse inattendue du serveur (vide).");
+      }
+
+      resultDiv.innerHTML = formatResult(resultText);
 
     } catch (err) {
       errorMsg.innerText = "Erreur : " + err.message;
@@ -95,15 +97,18 @@ if (form) {
   });
 }
 
-// Mise en forme du résultat (à adapter selon format backend)
 function formatResult(resultText) {
-  // Découpe par sections (exemple simple, à personnaliser selon la structure renvoyée)
+  if (!resultText || typeof resultText !== "string") {
+    return "<p class='sync-error'>Erreur de format dans la réponse générée.</p>";
+  }
+
+  // Supprimer les backslashes parasites devant les backticks `
   const sections = resultText.split(/\n(?=Image|Plan|#)/g);
-  return sections.map((section, idx) => `
+  return sections.map((section, idx) => \`
     <div class="sync-prompt-image-block">
-      <div class="sync-prompt-image-label">Plan ${idx + 1}</div>
-      <pre class="sync-prompt-image">${section.trim()}</pre>
-      <button class="sync-prompt-btn" id="btn-section${idx}" onclick="copyToClipboard('section${idx}')">Copier</button>
+      <div class="sync-prompt-image-label">Plan \${idx + 1}</div>
+      <pre class="sync-prompt-image" id="section\${idx}">\${section.trim()}</pre>
+      <button class="sync-prompt-btn" id="btn-section\${idx}" onclick="copyToClipboard('section\${idx}')">Copier</button>
     </div>
-  `).join('');
+  \`).join('');
 }
